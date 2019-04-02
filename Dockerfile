@@ -11,6 +11,7 @@ RUN cd client && npm install
 COPY . .
 
 RUN npm run build
+RUN cd client && npm run build
 
 EXPOSE 8080
 ENV PORT 8080
