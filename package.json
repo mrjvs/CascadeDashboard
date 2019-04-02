@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "run": "node ./dist/main.js",
+    "start": "node ./dist/main.js",
     "lint": "tslint --project tslint.json",
     "prod": "NODE_ENV=production node ./dist/main.js"
   }
