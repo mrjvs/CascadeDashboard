@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 // returns servers with title and member count.
 export function getServers(): string {
@@ -23,7 +23,7 @@ export async function isTokenValid(token: any): Promise<any> {
         creation: token.creation,
         userID: token.userID,
         signature: token.signature,
-    },{
+    }, {
         withCredentials: true,
     });
 
@@ -32,7 +32,7 @@ export async function isTokenValid(token: any): Promise<any> {
 
 export async function getToken(): Promise<any> {
     const result = await axios.get('//api.cascadebot.org/gettoken', {
-        withCredentials: true
+        withCredentials: true,
     });
     return result;
 }
