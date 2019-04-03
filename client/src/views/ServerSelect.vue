@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { Prop, Component, Vue } from 'vue-property-decorator';
-import { auth } from "@/api";
+import { auth } from '@/api';
 import ServerItem from '@/components/ServerItem.vue';
 import ServerSelectHeader from '@/components/ServerSelectHeader.vue';
 
@@ -17,7 +17,7 @@ import ServerSelectHeader from '@/components/ServerSelectHeader.vue';
     components: {
         ServerItem,
         ServerSelectHeader,
-    }
+    },
 })
 export default class ServerSelect extends Vue {
     @Prop() private servers!: object[];

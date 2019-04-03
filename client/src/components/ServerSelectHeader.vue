@@ -7,20 +7,20 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { auth } from "@/api";
-import axios from "axios";
+import { auth } from '@/api';
+import axios from 'axios';
 
 @Component({
     methods: {
         getUser() {
             axios.get('//api.cascadebot.org/me', {
-                withCredentials: true
+                withCredentials: true,
             }).then((user: any) => {
                 console.log(user.data);
                 (this as any).user = user.data;
             });
-        }
-    }
+        },
+    },
 })
 export default class ServerSelectHeader extends Vue {}
 </script>
