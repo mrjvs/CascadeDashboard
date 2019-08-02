@@ -5,9 +5,6 @@ import passport from "passport";
 import loggedIn from "../middleware/auth";
 import { getSignature, isSignatureValid } from "../utils/signature";
 
-// configuration
-import { dashboardDomain } from "../config.json";
-
 const apiRouter: Router = Router();
 
 // redirect to auth link
@@ -17,7 +14,7 @@ apiRouter.get("/login", passport.authenticate("discord"));
 apiRouter.get("/login/callback", passport.authenticate("discord", {
     failureRedirect: "/"
 }), (req: Request, res: Response): void => {
-    res.redirect(`//${ dashboardDomain }`);
+    res.redirect('/');
 });
 
 apiRouter.get("/me", (req: Request, res: Response): void => {

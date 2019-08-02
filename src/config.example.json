@@ -9,6 +9,5 @@
     "discordApplication": {
         "clientID": "blah",
         "clientSecret": "bloh"
-    },
-    "dashboardDomain": "dashboard.domain.com"
+    }
 }
