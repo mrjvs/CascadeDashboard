@@ -13,7 +13,7 @@ export function getSignatureObject() {
 export async function generateNewSignature() {
   const response = await axios({
     method: 'get',
-    url: 'http://api.cascadebot.org/gettoken',
+    url: '/api/gettoken',
     withCredentials: true,
   });
   localStorage.setItem('cascade-signature', response.data.signature);
@@ -32,5 +32,5 @@ export function isSignatureValid() {
   + signature.timeframe) <= new Date().getTime()) {
     return false;
   }
-  return true;
+  return false;
 }
