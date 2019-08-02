@@ -32,5 +32,5 @@ export function isSignatureValid() {
   + signature.timeframe) <= new Date().getTime()) {
     return false;
   }
-  return false;
+  return true;
 }
