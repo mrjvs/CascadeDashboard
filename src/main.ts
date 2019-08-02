@@ -28,7 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routers
-app.use(apiRouter);
+app.use('/api', apiRouter);
 app.use(dashboardRouter);
 
 app.listen(port, () => {

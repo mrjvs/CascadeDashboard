@@ -10,7 +10,7 @@ export default function() {
     passport.use(new DiscordStrategy({
         clientID,
         clientSecret,
-        callbackURL: "/login/callback",
+        callbackURL: "/api/login/callback",
         scope: [
             "identify", // all user info except for email
         ],
