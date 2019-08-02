@@ -1,0 +1,14 @@
+{
+    "port": 80,
+    "sessionSecret": "7777777",
+    "signature": {
+        "signatureSecret": "123abc",
+        "signatureTimeframe": 1800000,
+        "signatureAlgorithm": "sha1"
+    },
+    "discordApplication": {
+        "clientID": "blah",
+        "clientSecret": "bloh"
+    },
+    "dashboardDomain": "dashboard.domain.com"
+}
