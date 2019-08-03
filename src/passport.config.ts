@@ -1,26 +1,26 @@
-import passport from "passport";
-import { Strategy as DiscordStrategy } from "passport-discord";
+import passport from 'passport';
+import { Strategy as DiscordStrategy } from 'passport-discord';
 
 // configuration
-import { discordApplication } from "./config.json";
+const { discordApplication } = require('./config.json');
 const { clientID, clientSecret } = discordApplication;
 
 // passport configuration
-export default function() {
+export default function () {
     passport.use(new DiscordStrategy({
         clientID,
         clientSecret,
-        callbackURL: "/api/login/callback",
+        callbackURL: '/api/login/callback',
         scope: [
-            "identify", // all user info except for email
+            'identify', // all user info except for email
         ],
-    }, (access: string, // weird notation because of the max line length
+    },  (access: string,
         refresh: string,
         profile: DiscordStrategy.Profile,
         callback: (error: any, user?: any) => void) =>
         // we dont save accounts other than session cookies
         // so this just returns the profile
-        callback(null, profile)
+        callback(null, profile),
     ));
 
     // again, we dont save users so serialisation is a simple string conversion

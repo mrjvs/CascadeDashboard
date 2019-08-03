@@ -9,5 +9,6 @@
     "discordApplication": {
         "clientID": "blah",
         "clientSecret": "bloh"
-    }
+    },
+    "connectionString": "mongodb://localhost/my-db"
 }
