@@ -1,69 +1,54 @@
 <template>
     <div id="app">
-        <router-view :servers="servers" :user="user"/>
+        <router-view v-if="isAuthed === true"/>
+        <Login v-else-if="isAuthed === false"/>
+        <Loading v-else/>
     </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { cascade, auth } from '@/api';
+<script>
+import Loading from '@/components/Loading.vue';
+import Login from '@/components/Login.vue';
+import { isAuthenticated } from '@/auth';
 
-@Component({
-    data() {
-        return {
-            servers: {
-                1234567890: {
-                    id: 1234567890,
-                    title: 'Nintendo Homebrew',
-                    members: 777,
-                    image: 'https://cdn.discordapp.com/icons/196618637950451712/d14087d74031ef5bc5b825b74e64333a.png',
-                },
-            },
-            user: {
-                id: 1243568790,
-                username: 'mrjvs',
-                discriminator: 7777,
-                image: 'https://cdn.discordapp.com/icons/196618637950451712/d14087d74031ef5bc5b825b74e64333a.png',
-            },
-        };
-    },
-    async created() {
-        const token = await auth.getToken();
-        console.log(token.data);
-        console.log( (await auth.isTokenValid(token.data)).data );
-    },
-})
-export default class Dashboard extends Vue {}
+export default {
+  components: {
+    Loading,
+    Login,
+  },
+  data() {
+    return {
+      isAuthed: null,
+    };
+  },
+  created() {
+    // do auth check
+    isAuthenticated().then((res) => {
+      this.isAuthed = res;
+    }).catch(() => {
+      this.isAuthed = false;
+    });
+  },
+};
 </script>
 
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
+<style lang="scss">
 #app {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
+    text-align: center;
+    color: #2c3e50;
 }
-
-body, html {
-    font-size: 1em;
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    background-color: #1B1B29;
-    color: #B1A5CB;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-
-    &:focus, &:hover, &:visited {
-        text-decoration: none;
-        color: inherit;
+#nav {
+    padding: 30px;
+    a {
+        font-weight: bold;
+        color: #2c3e50;
+        &.router-link-exact-active {
+            color: #42b983;
+        }
     }
 }
 </style>

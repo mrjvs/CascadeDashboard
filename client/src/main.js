@@ -1,10 +1,12 @@
 import Vue from 'vue';
-import Dashboard from './App.vue';
+import App from './App.vue';
 import router from './router';
+import apolloProvider from './vue-apollo';
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: (h) => h(Dashboard),
+  apolloProvider,
+  render: h => h(App),
 }).$mount('#app');
