@@ -23,6 +23,15 @@ export async function generateNewSignature() {
   localStorage.setItem('cascade-clientCreation', new Date().getTime());
 }
 
+export async function isAuthenticated() {
+  const response = await axios({
+    method: 'get',
+    url: '/api/me',
+    withCredentials: true,
+  });
+  return response.status === 200;
+}
+
 export function isSignatureValid() {
   const signature = getSignatureObject();
   console.log(signature.clientCreation

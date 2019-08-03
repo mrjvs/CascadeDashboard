@@ -17,8 +17,8 @@ apiRouter.get("/login/callback", passport.authenticate("discord", {
     res.redirect('/');
 });
 
-apiRouter.get("/me", (req: Request, res: Response): void => {
-    res.send(req.user);
+apiRouter.get("/me", loggedIn, (req: Request, res: Response): void => {
+    res.send(req.user.id);
 });
 
 apiRouter.get("/gettoken", loggedIn, (req: Request, res: Response): void => {
