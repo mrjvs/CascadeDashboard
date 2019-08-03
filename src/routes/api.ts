@@ -1,4 +1,4 @@
-import { Router, Response, Request } from "express";
+import { Router, Response, Request, NextFunction } from "express";
 import passport from "passport";
 
 // local imports
@@ -18,7 +18,9 @@ apiRouter.get("/login/callback", passport.authenticate("discord", {
 });
 
 apiRouter.get("/me", loggedIn, (req: Request, res: Response): void => {
-    res.send(req.user.id);
+    res.json({
+        userID: req.user.id
+    });
 });
 
 apiRouter.get("/gettoken", loggedIn, (req: Request, res: Response): void => {
@@ -29,6 +31,20 @@ apiRouter.post("/istokenvalid", ( req: Request, res: Response): Response => {
     const { signature, creation, userID } = req.body;
     return res.json({
         valid: isSignatureValid(signature, parseInt(creation, undefined), userID)
+    });
+});
+
+apiRouter.use((req: Request, res: Response) => {
+    res.status(404).json({
+        code: 404,
+        error: "Endpoint not found"
+    });
+});
+
+apiRouter.use((error: any, req: Request, res: Response, next: NextFunction) => {
+    res.status(500).json({
+        code: 500,
+        error: "Internal server error"
     });
 });
 
