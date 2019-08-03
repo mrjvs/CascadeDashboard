@@ -11,7 +11,7 @@ import { isSignatureValid, generateNewSignature, getSignatureObject } from './au
 Vue.use(VueApollo);
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:8080/graphql',
+  uri: process.env.VUE_APP_GRAPHQL_URL,
 });
 
 const middlewareLink = setContext(async () => {
