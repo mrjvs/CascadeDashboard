@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Loading from "@/components/Loading.vue";
+import Loading from '@/components/Loading.vue';
 
 export default {
-    components: {
-        Loading,
-    },
-}
+  components: {
+    Loading,
+  },
+};
 </script>

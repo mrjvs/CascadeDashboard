@@ -7,8 +7,8 @@
 
 <script>
 export default {
-    props: [
-        "guild"
-    ]
-}
+  props: [
+    'guild',
+  ],
+};
 </script>
