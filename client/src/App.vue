@@ -1,11 +1,37 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link to="/">Testing</router-link>
-        </div>
-        <router-view/>
+        <router-view v-if="isAuthed === true"/>
+        <Login v-else-if="isAuthed === false"/>
+        <Loading v-else/>
     </div>
 </template>
+
+<script>
+import Loading from "@/components/Loading.vue";
+import Login from "@/components/Login.vue";
+import { isAuthenticated } from "@/auth";
+
+export default {
+    components: {
+        Loading,
+        Login,
+    },
+    data() {
+        return {
+            isAuthed: null,
+        };
+    },
+    created() {
+        // do auth check
+        isAuthenticated().then(res => {
+            this.isAuthed = res;
+        }).catch(res => {
+            this.isAuthed = false;
+        });
+    }
+}
+</script>
+
 
 <style lang="scss">
 #app {

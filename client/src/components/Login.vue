@@ -1,0 +1,6 @@
+<template>
+    <div class="login">
+        <h1>Oh hey! It seems like you aren't logged in yet.</h1>
+        <p><a href="api/login">Click here to login!</a></p>
+    </div>
+</template>
