@@ -34,11 +34,8 @@ export async function isAuthenticated() {
 
 export function isSignatureValid() {
   const signature = getSignatureObject();
-  console.log(signature.clientCreation
-    + signature.timeframe);
-  console.log(new Date().getTime());
   if (signature && (signature.clientCreation
-  + signature.timeframe) <= new Date().getTime()) {
+    + signature.timeframe) <= new Date().getTime()) {
     return false;
   }
   return true;
