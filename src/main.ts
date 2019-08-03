@@ -26,7 +26,7 @@ app.use(session({
         maxAge: 3600000,
     },
     store: new mongoStore({
-        mongooseConnection: connectionString,
+        url: connectionString,
     }),
 }));
 app.use(passport.initialize());
