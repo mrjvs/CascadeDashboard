@@ -24,6 +24,7 @@ export async function generateNewSignature() {
 }
 
 export async function isAuthenticated() {
+  console.log(process.env);
   const response = await axios({
     method: 'get',
     url: process.env.VUE_APP_API_ME,
