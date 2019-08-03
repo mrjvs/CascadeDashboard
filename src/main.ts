@@ -1,7 +1,6 @@
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
-import mongoose from 'mongoose';
 import connectMongo from 'connect-mongo';
 const mongoStore = connectMongo(session);
 
@@ -16,14 +15,6 @@ import passportConfig from './passport.config';
 // setup passport discord auth
 passportConfig();
 
-// setup mongodb for session storage
-mongoose.connect(connectionString, {
-    useMongoClient: true,
-});
-
-mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-
 // setup express
 const app: express.Application = express();
 app.use(express.json());
@@ -34,7 +25,9 @@ app.use(session({
     cookie: {
         maxAge: 3600000,
     },
-    store: new mongoStore({ mongooseConnection: db }),
+    store: new mongoStore({
+        mongooseConnection: connectionString,
+    }),
 }));
 app.use(passport.initialize());
 app.use(passport.session());
