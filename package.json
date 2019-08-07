@@ -21,9 +21,9 @@
     "tslint": "^5.18.0"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "start": "node ./dist/main.js",
+    "build": "tsc",
+    "start": "cd dist && node ./main.js",
     "lint": "tslint --project tslint.json",
-    "prod": "NODE_ENV=production node ./dist/main.js"
+    "prod": "cd dist && NODE_ENV=production node ./main.js"
   }
 }

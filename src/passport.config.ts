@@ -2,8 +2,8 @@ import passport from 'passport';
 import { Strategy as DiscordStrategy } from 'passport-discord';
 
 // configuration
-const { discordApplication } = require('./config.json');
-const { clientID, clientSecret, callbackUrl } = discordApplication;
+import config from './config';
+const { clientID, clientSecret, callbackUrl } = config.discordApplication;
 
 // passport configuration
 export default function () {
