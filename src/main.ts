@@ -9,7 +9,7 @@ import dashboardRouter from './routes/dashboard';
 import apiRouter from './routes/api';
 
 // configuration
-const { sessionSecret, port, connectionString } = require('./config.json');
+import { sessionSecret, port, connectionString } from './config.json';
 import passportConfig from './passport.config';
 
 // setup passport discord auth
