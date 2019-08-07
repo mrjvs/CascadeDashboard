@@ -13,7 +13,7 @@ export function getSignatureObject() {
 export async function generateNewSignature() {
   const response = await axios({
     method: 'get',
-    url: '/api/gettoken',
+    url: process.env.VUE_APP_API_GETTOKEN,
     withCredentials: true,
   });
   localStorage.setItem('cascade-signature', response.data.signature);
@@ -24,9 +24,10 @@ export async function generateNewSignature() {
 }
 
 export async function isAuthenticated() {
+  console.log(process.env);
   const response = await axios({
     method: 'get',
-    url: '/api/me',
+    url: process.env.VUE_APP_API_ME,
     withCredentials: true,
   });
   return response.status === 200;
