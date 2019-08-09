@@ -9,7 +9,7 @@ interface ConfigType {
     discordApplication: {
         clientID: string;
         clientSecret: string;
-        callbackUrl: string;
+        host: string;
     };
     connectionString: string;
 }

@@ -9,7 +9,7 @@
     "discordApplication": {
         "clientID": "blah",
         "clientSecret": "bloh",
-        "callbackUrl": "https://dashboard.cascadebot.org/api/login/callback"
+        "host": "https://dashboard.cascadebot.org"
     },
     "connectionString": "mongodb://localhost/my-db"
 }

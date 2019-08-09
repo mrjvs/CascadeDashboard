@@ -3,14 +3,14 @@ import { Strategy as DiscordStrategy } from 'passport-discord';
 
 // configuration
 import config from './config';
-const { clientID, clientSecret, callbackUrl } = config.discordApplication;
+const { clientID, clientSecret, host } = config.discordApplication;
 
 // passport configuration
 export default function () {
     passport.use(new DiscordStrategy({
         clientID,
         clientSecret,
-        callbackURL: callbackUrl,
+        callbackURL: `${host}/api/login/callback`,
         scope: [
             'identify', // all user info except for email
         ],
