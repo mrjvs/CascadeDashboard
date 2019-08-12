@@ -7,6 +7,7 @@ const { signatureSecret, signatureTimeframe, signatureAlgorithm } = config.signa
 export function getSignature(userID: string, time: number = new Date().getTime()): {
     signature: string,
     expiry: number,
+    timeframe: number,
     userID: string,
 } {
     const finalSignature: string = crypto.createHmac(signatureAlgorithm, signatureSecret)
@@ -16,6 +17,7 @@ export function getSignature(userID: string, time: number = new Date().getTime()
     return {
         signature: finalSignature,
         expiry: time + signatureTimeframe,
+        timeframe: signatureTimeframe,
         userID,
     };
 }

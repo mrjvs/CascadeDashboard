@@ -23,7 +23,7 @@ apiRouter.get('/me', loggedIn, (req: Request, res: Response): void => {
     });
 });
 
-apiRouter.get('/gettoken', loggedIn, (req: Request, res: Response): void => {
+apiRouter.get('/getsignature', loggedIn, (req: Request, res: Response): void => {
     res.json(getSignature(req.user.id));
 });
 
