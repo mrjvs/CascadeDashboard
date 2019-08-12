@@ -23,7 +23,7 @@ const middlewareLink = setContext(async () => {
     headers: {
       authorization: signatureObject.signature,
       'Cascade-UserId': signatureObject.userId,
-      'Cascade-signature-creation': signatureObject.creation,
+      'Cascade-signature-expiry': signatureObject.expiry,
     },
   };
 });
