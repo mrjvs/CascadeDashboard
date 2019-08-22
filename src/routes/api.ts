@@ -3,7 +3,7 @@ import passport from 'passport';
 
 // local imports
 import loggedIn from '../middleware/auth';
-import { getSignature, isSignatureValid } from '../utils/signature';
+import { getToken, isTokenValid } from '../utils/signature';
 
 const apiRouter: Router = Router();
 
@@ -23,14 +23,14 @@ apiRouter.get('/me', loggedIn, (req: Request, res: Response): void => {
     });
 });
 
-apiRouter.get('/getsignature', loggedIn, (req: Request, res: Response): void => {
-    res.json(getSignature(req.user.id));
+apiRouter.get('/getToken', loggedIn, (req: Request, res: Response): void => {
+    res.json(getToken(req.user.id));
 });
 
 apiRouter.post('/istokenvalid', ( req: Request, res: Response): Response => {
-    const { signature, creation, userID } = req.body;
+    const { token } = req.body;
     return res.json({
-        valid: isSignatureValid(signature, parseInt(creation, undefined), userID),
+        valid: isTokenValid(token),
     });
 });
 

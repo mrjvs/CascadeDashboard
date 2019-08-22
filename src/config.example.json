@@ -1,10 +1,10 @@
 {
     "port": 80,
     "sessionSecret": "7777777",
-    "signature": {
-        "signatureSecret": "123abc",
-        "signatureTimeframe": 1800000,
-        "signatureAlgorithm": "sha1"
+    "token": {
+        "tokenSecret": "123abc",
+        "tokenTimeframe": 1800000,
+        "tokenAlgorithm": "HS512"
     },
     "discordApplication": {
         "clientID": "blah",

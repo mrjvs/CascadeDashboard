@@ -1,10 +1,10 @@
 interface ConfigType {
     port: number;
     sessionSecret: string;
-    signature: {
-        signatureSecret: string;
-        signatureTimeframe: number;
-        signatureAlgorithm: string;
+    token: {
+        tokenSecret: string;
+        tokenTimeframe: number;
+        tokenAlgorithm: string;
     };
     discordApplication: {
         clientID: string;

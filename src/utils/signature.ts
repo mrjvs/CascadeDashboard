@@ -1,30 +1,24 @@
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
 
 // configuration
 import config from '../config';
-const { signatureSecret, signatureTimeframe, signatureAlgorithm } = config.signature;
+const { tokenSecret, tokenAlgorithm } = config.token;
 
-export function getSignature(userID: string, time: number = new Date().getTime()): {
-    signature: string,
-    expiry: number,
-    timeframe: number,
-    userID: string,
-} {
-    const finalSignature: string = crypto.createHmac(signatureAlgorithm, signatureSecret)
-        .update(time.toString())
-        .update(userID)
-        .digest('hex');
-    return {
-        signature: finalSignature,
-        expiry: time + signatureTimeframe,
-        timeframe: signatureTimeframe,
-        userID,
-    };
+export function getToken(userID: string): string {
+    const token = jwt.sign(() => {
+        return { sub: userID };
+    }, tokenSecret, {
+        algorithm: tokenAlgorithm,
+    });
+    return token;
 }
 
-export function isSignatureValid(signature: string, expiry: number, userID: string): boolean {
-    if (expiry <= new Date().getTime()) {
+export function isTokenValid(token: string): boolean {
+    try {
+        jwt.verify(token, tokenSecret);
+        return true;
+    } catch (err) {
         return false;
     }
-    return signature === getSignature(userID).signature;
 }
