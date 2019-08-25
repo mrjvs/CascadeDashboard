@@ -5,9 +5,9 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import VueApollo from 'vue-apollo';
-import { isSignatureValid, generateNewSignature, getSignatureObject } from './auth';
+import { isTokenValid, generateNewToken, getTokenObject } from './auth';
 
-// Install the vue plugin
+// use the vue plugin
 Vue.use(VueApollo);
 
 const httpLink = new HttpLink({
@@ -15,15 +15,13 @@ const httpLink = new HttpLink({
 });
 
 const middlewareLink = setContext(async () => {
-  if (!isSignatureValid()) {
-    await generateNewSignature();
+  if (!isTokenValid()) {
+    await generateNewToken();
   }
-  const signatureObject = getSignatureObject();
+  const tokenObject = getTokenObject();
   return {
     headers: {
-      authorization: signatureObject.signature,
-      'Cascade-UserId': signatureObject.userId,
-      'Cascade-signature-expiry': signatureObject.expiry,
+      authorization: tokenObject.token,
     },
   };
 });
