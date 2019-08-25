@@ -2,8 +2,8 @@
     "port": 80,
     "sessionSecret": "7777777",
     "token": {
-        "tokenSecret": "123abc",
-        "tokenTimeframe": 1800000,
+        "tokenSecret": "anything",
+        "tokenExpiry": "24h",
         "tokenAlgorithm": "HS512"
     },
     "discordApplication": {

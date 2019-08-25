@@ -3,7 +3,7 @@ import passport from 'passport';
 
 // local imports
 import loggedIn from '../middleware/auth';
-import { getToken, isTokenValid } from '../utils/signature';
+import { getToken, isTokenValid } from '../utils/token';
 
 const apiRouter: Router = Router();
 

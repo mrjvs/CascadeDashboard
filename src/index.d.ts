@@ -3,7 +3,7 @@ interface ConfigType {
     sessionSecret: string;
     token: {
         tokenSecret: string;
-        tokenTimeframe: number;
+        tokenExpiry: number;
         tokenAlgorithm: string;
     };
     discordApplication: {

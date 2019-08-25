@@ -3,13 +3,14 @@ import jwt from 'jsonwebtoken';
 
 // configuration
 import config from '../config';
-const { tokenSecret, tokenAlgorithm } = config.token;
+const { tokenSecret, tokenAlgorithm, tokenExpiry } = config.token;
 
 export function getToken(userID: string): string {
     const token = jwt.sign(() => {
         return { sub: userID };
     }, tokenSecret, {
         algorithm: tokenAlgorithm,
+        expiresIn: tokenExpiry,
     });
     return token;
 }
