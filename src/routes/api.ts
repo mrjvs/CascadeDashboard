@@ -42,6 +42,7 @@ apiRouter.use((req: Request, res: Response) => {
 });
 
 apiRouter.use((error: any, req: Request, res: Response, next: NextFunction) => {
+    console.log(error);
     res.status(500).json({
         code: 500,
         error: 'Internal server error',

@@ -5,14 +5,17 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 const { tokenSecret, tokenAlgorithm, tokenExpiry } = config.token;
 
-export function getToken(userID: string): string {
-    const token = jwt.sign(() => {
-        return { sub: userID };
-    }, tokenSecret, {
+export function getToken(userID: string): {token: string, expiresIn: number} {
+    const token = jwt.sign(JSON.stringify({
+            sub: userID,
+            exp: Math.floor(Date.now() / 1000) + tokenExpiry,
+        }), tokenSecret, {
         algorithm: tokenAlgorithm,
-        expiresIn: tokenExpiry,
     });
-    return token;
+    return {
+        token,
+        expiresIn: tokenExpiry,
+    };
 }
 
 export function isTokenValid(token: string): boolean {

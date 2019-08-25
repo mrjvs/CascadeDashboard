@@ -3,7 +3,7 @@
     "sessionSecret": "7777777",
     "token": {
         "tokenSecret": "anything",
-        "tokenExpiry": "24h",
+        "tokenExpiry": 86400,
         "tokenAlgorithm": "HS512"
     },
     "discordApplication": {
