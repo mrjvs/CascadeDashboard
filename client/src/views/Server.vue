@@ -16,6 +16,7 @@
 
 <script>
 import gql from 'graphql-tag';
+import { generateNewToken } from '@/auth';
 import Loading from '@/components/Loading.vue';
 
 export default {
@@ -28,6 +29,7 @@ export default {
         empty: true,
       },
       error: null,
+      retry: 1,
     };
   },
   apollo: {
@@ -46,6 +48,15 @@ export default {
       },
       error(error) {
         this.error = error;
+      },
+      result(res) {
+        if (!res.data && !res.loading) {
+          if (this.retry > 0) {
+            this.retry -= 1;
+            generateNewToken();
+            this.$apollo.queries.guild.refresh();
+          }
+        }
       },
     },
   },
