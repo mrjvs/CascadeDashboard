@@ -37,7 +37,11 @@ export default {
       query: gql`
         query guild($id: Long!) {
           guild(id: $id) {
-            memberCount
+            memberCount,
+            coreSettings {
+              useEmbedForMessages,
+              prefix
+            }
           }
         }
       `,
