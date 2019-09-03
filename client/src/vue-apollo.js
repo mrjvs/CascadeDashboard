@@ -5,7 +5,7 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import VueApollo from 'vue-apollo';
-import { isTokenValid, generateNewToken, getTokenObject } from './auth';
+import { isTokenValid, generateNewToken, getTokenObject } from './utils/auth';
 
 // use the vue plugin
 Vue.use(VueApollo);

@@ -9,7 +9,7 @@
 <script>
 import Loading from '@/components/Loading.vue';
 import Login from '@/components/Login.vue';
-import { isAuthenticated } from '@/auth';
+import { isAuthenticated } from '@/utils/auth';
 
 export default {
   components: {

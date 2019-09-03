@@ -8,7 +8,7 @@
         <router-link to="general">General</router-link><br>
         <router-link to="modlog">Modlog</router-link>
       </div>
-      <router-view name="settings" :guild="guild"/>
+      <router-view name="settings"/>
     </div>
     <div v-else>Not found</div>
   </div>
@@ -16,7 +16,7 @@
 
 <script>
 import gql from 'graphql-tag';
-import { generateNewToken } from '@/auth';
+import { generateNewToken } from '@/utils/auth';
 import Loading from '@/components/Loading.vue';
 
 export default {

@@ -1,7 +1,7 @@
 <template>
   <div class="command-preview">
-    <p>{{ prefix }}userinfo</p>
-    <p v-if="showEmbed">
+    <p>{{ guildPrefix }}userinfo</p>
+    <p v-if="guildEmbedPreference">
       EMBED USERINFO HERE
     </p>
     <p v-else>
@@ -11,11 +11,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  props: [
-    "prefix",
-    "showEmbed",
-  ],
+  computed: mapGetters(['guildPrefix', 'guildEmbedPreference']),
 };
 </script>
 
