@@ -1,11 +1,11 @@
 export default {
   guildPrefix(state) {
-    return state.guild.prefix;
+    return state.guilds[state.selectedGuild].prefix;
   },
   guildEmbedPreference(state) {
-    return state.guild.embedPreference;
+    return state.guilds[state.selectedGuild].embedPreference;
   },
   guildMemberCount(state) {
-    return state.guild.memberCount;
+    return state.guilds[state.selectedGuild].memberCount;
   },
 };

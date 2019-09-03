@@ -1,8 +1,6 @@
 <template>
   <div class="server">
-    <Loading v-if="$apollo.loading"/>
-    <div v-else-if="error">An error occured. Please try again later</div>
-    <div v-else-if="guild && guild.empty !== true">
+    <div>
       <h1>Server view</h1>
       <div class="nav">
         <router-link to="general">General</router-link><br>
@@ -10,7 +8,6 @@
       </div>
       <router-view name="settings"/>
     </div>
-    <div v-else>Not found</div>
   </div>
 </template>
 
@@ -23,46 +20,9 @@ export default {
   components: {
     Loading,
   },
-  data() {
-    return {
-      guild: {
-        empty: true,
-      },
-      error: null,
-      retry: 1,
-    };
-  },
-  apollo: {
-    guild: {
-      query: gql`
-        query guild($id: Long!) {
-          guild(id: $id) {
-            memberCount,
-            coreSettings {
-              useEmbedForMessages,
-              prefix
-            }
-          }
-        }
-      `,
-      variables() {
-        return {
-          id: this.$route.params.id,
-        };
-      },
-      error(error) {
-        this.error = error;
-      },
-      result(res) {
-        if (!res.data && !res.loading) {
-          if (this.retry > 0) {
-            this.retry -= 1;
-            generateNewToken();
-            this.$apollo.queries.guild.refresh();
-          }
-        }
-      },
-    },
-  },
+  created() {
+    this.$store.commit('selectedGuild', this.$route.params.id);
+    this.$store.commit('getGuildData');
+  }
 };
 </script>
