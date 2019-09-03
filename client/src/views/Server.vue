@@ -22,7 +22,7 @@ export default {
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);
-    this.$store.commit('getGuildData');
-  }
+    this.$store.dispatch('getGuildData');
+  },
 };
 </script>

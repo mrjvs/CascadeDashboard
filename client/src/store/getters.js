@@ -1,11 +1,22 @@
+function getGuild(state) {
+  return state.guilds.find(val => val.id === state.selectedGuild);
+}
+
+function guildExists(state) {
+  return getGuild(state) != null;
+}
+
 export default {
   guildPrefix(state) {
-    return state.guilds[state.selectedGuild].prefix;
+    if (guildExists(state)) return getGuild(state).prefix;
+    return null;
   },
   guildEmbedPreference(state) {
-    return state.guilds[state.selectedGuild].embedPreference;
+    if (guildExists(state)) return getGuild(state).embedPreference;
+    return null;
   },
   guildMemberCount(state) {
-    return state.guilds[state.selectedGuild].memberCount;
+    if (guildExists(state)) return getGuild(state).memberCount;
+    return null;
   },
 };

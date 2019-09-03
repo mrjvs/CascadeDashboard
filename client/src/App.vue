@@ -25,8 +25,10 @@ export default {
     // do auth check
     isAuthenticated().then((res) => {
       this.isAuthed = res;
+      this.$store.commit('setLoading', false);
     }).catch(() => {
       this.isAuthed = false;
+      this.$store.commit('setLoading', false);
     });
   },
 };
