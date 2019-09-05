@@ -1,3 +1,5 @@
+import { setChange } from './utils';
+
 export default {
   selectedGuild(state, guildId) {
     state.selectedGuild = guildId;
@@ -13,5 +15,11 @@ export default {
   },
   setLoading(state, bool) {
     state.loading = bool;
+  },
+  setGuildPrefix(state, prefix) {
+    setChange(state, 'prefix', 'prefix', prefix);
+  },
+  setGuildEmbedPreference(state, bool) {
+    setChange(state, 'embedPreference', 'embedPreference', bool);
   },
 };

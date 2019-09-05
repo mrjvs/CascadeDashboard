@@ -11,6 +11,7 @@ export default new Vuex.Store({
   state: {
     guilds: [],
     loading: true,
+    changes: [],
   },
   getters,
   mutations,

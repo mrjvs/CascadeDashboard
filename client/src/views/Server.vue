@@ -7,18 +7,17 @@
         <router-link to="modlog">Modlog</router-link>
       </div>
       <router-view name="settings"/>
+      <SaveAlert/>
     </div>
   </div>
 </template>
 
 <script>
-import gql from 'graphql-tag';
-import { generateNewToken } from '@/utils/auth';
-import Loading from '@/components/Loading.vue';
+import SaveAlert from '@/components/SaveAlert.vue';
 
 export default {
   components: {
-    Loading,
+    SaveAlert,
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);

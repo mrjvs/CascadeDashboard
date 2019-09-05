@@ -1,22 +1,16 @@
-function getGuild(state) {
-  return state.guilds.find(val => val.id === state.selectedGuild);
-}
-
-function guildExists(state) {
-  return getGuild(state) != null;
-}
+import { getNewestChange, getStateGuildData } from './utils';
 
 export default {
   guildPrefix(state) {
-    if (guildExists(state)) return getGuild(state).prefix;
-    return null;
+    return getNewestChange(state, 'prefix', 'prefix');
   },
   guildEmbedPreference(state) {
-    if (guildExists(state)) return getGuild(state).embedPreference;
-    return null;
+    return getNewestChange(state, 'embedPreference', 'embedPreference');
   },
   guildMemberCount(state) {
-    if (guildExists(state)) return getGuild(state).memberCount;
-    return null;
+    return getStateGuildData(state, 'memberCount');
+  },
+  hasChanges(state) {
+    return state.changes.length !== 0;
   },
 };

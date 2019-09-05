@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import apollo from '../apollo/client';
+import { parseGuildData } from './utils';
 
 export default {
   async getGuildData({ commit, state }) {
@@ -27,5 +28,15 @@ export default {
       memberCount: response.data.guild.memberCount,
     });
     commit('setLoading', false);
+  },
+  async saveChanges({ dispatch, state }) {
+    const guildData = parseGuildData(state);
+    if (guildData !== null) {
+      try {
+        await dispatch('saveGuildData', guildData);
+      } catch (e) {
+        console.error('Failed to save guildata');
+      }
+    }
   },
 };
