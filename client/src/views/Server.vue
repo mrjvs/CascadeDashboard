@@ -1,23 +1,25 @@
 <template>
   <div class="server">
-    <div>
-      <h1>Server view</h1>
-      <div class="nav">
-        <router-link to="general">General</router-link><br>
-        <router-link to="modlog">Modlog</router-link>
-      </div>
-      <router-view name="settings"/>
-      <SaveAlert/>
-    </div>
+    <sidebar-container>
+      <sidebar backlink="../">
+        <sidebar-link to="general" text="General" />
+        <sidebar-link to="modlog" text="Modlog" />
+      </sidebar>
+      <router-view name="settings" />
+    </sidebar-container>
   </div>
 </template>
 
 <script>
-import SaveAlert from '@/components/SaveAlert.vue';
+import SidebarContainer from '@/components/layout/SidebarContainer.vue';
+import Sidebar from '@/components/sidebar/Sidebar.vue';
+import SidebarLink from '@/components/sidebar/SidebarLink.vue';
 
 export default {
   components: {
-    SaveAlert,
+    SidebarContainer,
+    Sidebar,
+    SidebarLink,
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);
