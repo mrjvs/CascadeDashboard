@@ -2,8 +2,8 @@
   <div class="server">
     <sidebar-container>
       <sidebar backlink="../">
-        <sidebar-link to="general" text="General" />
-        <sidebar-link to="modlog" text="Modlog" />
+        <sidebar-link to="general"><file-text-icon size="1x"/>General</sidebar-link>
+        <sidebar-link to="modlog"><box-icon size="1x"/>Modlog</sidebar-link>
       </sidebar>
       <router-view name="settings" />
     </sidebar-container>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { FileTextIcon, BoxIcon } from 'vue-feather-icons';
 import SidebarContainer from '@/components/layout/SidebarContainer.vue';
 import Sidebar from '@/components/sidebar/Sidebar.vue';
 import SidebarLink from '@/components/sidebar/SidebarLink.vue';
@@ -20,6 +21,8 @@ export default {
     SidebarContainer,
     Sidebar,
     SidebarLink,
+    FileTextIcon,
+    BoxIcon,
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);

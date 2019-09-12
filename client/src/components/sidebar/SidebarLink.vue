@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-link">
-    <router-link :to="this.$props.to">{{ this.$props.text }}</router-link>
+    <router-link class="router-link" :to="this.$props.to"><slot /></router-link>
   </div>
 </template>
 
@@ -11,21 +11,19 @@ export default {
     to: {
       required: true,
     },
-    text: {
-      required: true,
-    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-  .sidebar-link a {
-    display: block;
-    padding: .5em 1em;
+<style lang="scss">
+  .sidebar-link .router-link {
+    display: flex;
+    padding: .6em 1em;
     border-radius: 3px;
     color: #847EAA;
     text-decoration: none;
     margin-bottom: .1em;
+    align-items: center;
 
     &.router-link-active {
       background-color: #282848;
@@ -36,6 +34,10 @@ export default {
     &:hover {
       color: white;
       text-decoration: none;
+    }
+
+    .feather, .icon {
+      margin-right: .5em;
     }
   }
 </style>
