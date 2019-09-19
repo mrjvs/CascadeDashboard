@@ -9,7 +9,7 @@
 <script>
 import Loading from '@/components/Loading.vue';
 import Login from '@/components/Login.vue';
-import { isAuthenticated } from '@/auth';
+import { isAuthenticated } from '@/utils/auth';
 
 export default {
   components: {
@@ -25,8 +25,10 @@ export default {
     // do auth check
     isAuthenticated().then((res) => {
       this.isAuthed = res;
+      this.$store.commit('setLoading', false);
     }).catch(() => {
       this.isAuthed = false;
+      this.$store.commit('setLoading', false);
     });
   },
 };

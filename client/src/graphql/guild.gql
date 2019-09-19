@@ -1,5 +1,0 @@
-query guild($id: Long!) {
-    guild(id: $id) {
-        memberCount
-    }
-}

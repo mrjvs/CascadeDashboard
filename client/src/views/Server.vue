@@ -1,68 +1,27 @@
 <template>
   <div class="server">
-    <Loading v-if="$apollo.loading"/>
-    <div v-else-if="error">An error occured. Please try again later</div>
-    <div v-else-if="guild && guild.empty !== true">
+    <div>
       <h1>Server view</h1>
       <div class="nav">
         <router-link to="general">General</router-link><br>
         <router-link to="modlog">Modlog</router-link>
       </div>
-      <router-view name="settings" :guild="guild"/>
+      <router-view name="settings"/>
+      <SaveAlert/>
     </div>
-    <div v-else>Not found</div>
   </div>
 </template>
 
 <script>
-import gql from 'graphql-tag';
-import { generateNewToken } from '@/auth';
-import Loading from '@/components/Loading.vue';
+import SaveAlert from '@/components/SaveAlert.vue';
 
 export default {
   components: {
-    Loading,
+    SaveAlert,
   },
-  data() {
-    return {
-      guild: {
-        empty: true,
-      },
-      error: null,
-      retry: 1,
-    };
-  },
-  apollo: {
-    guild: {
-      query: gql`
-        query guild($id: Long!) {
-          guild(id: $id) {
-            memberCount,
-            coreSettings {
-              useEmbedForMessages,
-              prefix
-            }
-          }
-        }
-      `,
-      variables() {
-        return {
-          id: this.$route.params.id,
-        };
-      },
-      error(error) {
-        this.error = error;
-      },
-      result(res) {
-        if (!res.data && !res.loading) {
-          if (this.retry > 0) {
-            this.retry -= 1;
-            generateNewToken();
-            this.$apollo.queries.guild.refresh();
-          }
-        }
-      },
-    },
+  created() {
+    this.$store.commit('selectedGuild', this.$route.params.id);
+    this.$store.dispatch('getGuildData');
   },
 };
 </script>
