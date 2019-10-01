@@ -17,5 +17,14 @@ export default {
     padding: .7em 3em;
     border-radius: 5em;
     border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1E8574;
+    }
+
+    &:active {
+      opacity: .75;
+    }
   }
 </style>

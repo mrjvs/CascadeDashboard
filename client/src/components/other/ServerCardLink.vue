@@ -45,6 +45,14 @@ export default {
       text-decoration: none;
     }
 
+    &:hover {
+      background-color: #1b1b3d;
+    }
+
+    &:active {
+      opacity: .75;
+    }
+
     .img {
       flex-shrink: 0;
       width: 3.5em;
