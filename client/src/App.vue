@@ -25,11 +25,14 @@ export default {
     // do auth check
     isAuthenticated()
       .then((res) => {
+        if (res !== true) {
+          window.location = process.env.VUE_APP_API_LOGIN;
+        }
         this.isAuthed = res;
         this.$store.commit('setLoading', false);
       })
       .catch(() => {
-        this.isAuthed = false;
+        window.location = process.env.VUE_APP_API_LOGIN;
         this.$store.commit('setLoading', false);
       });
   },
@@ -50,5 +53,6 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1em;
+  background-color: #181836;
 }
 </style>

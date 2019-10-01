@@ -37,7 +37,6 @@ export default {
     color: #CCCCE8;
     padding: 1em;
     display: flex;
-    margin: 1em 0;
     width: auto;
     text-decoration: none;
     align-items: center;
