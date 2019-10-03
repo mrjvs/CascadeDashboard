@@ -18,5 +18,10 @@ export default {
     padding: 2rem;
     margin: 4rem 2rem 2rem 2rem;
     color: white;
+
+    &.twopart {
+      display: flex;
+      flex-direction: row;
+    }
   }
 </style>

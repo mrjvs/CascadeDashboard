@@ -1,12 +1,16 @@
 <template>
   <content-container>
-    <content-card>
-      <h1>General page here</h1>
-      <p>There are {{ guildMemberCount }} members in this server</p>
-      <h3>custom prefix</h3>
-      <CascadeInput saveGet="guildPrefix" saveSet="setGuildPrefix" />
-      <CascadeCheck saveGet="guildEmbedPreference" saveSet="setGuildEmbedPreference" />
-      <CommandPreview />
+    <content-card class="twopart">
+      <div class="one">
+        <h1>Command use</h1>
+        <CascadeInput label="prefix" saveGet="guildPrefix" saveSet="setGuildPrefix" />
+        <CascadeCheck label="Use embedded response"
+          saveGet="guildEmbedPreference"
+          saveSet="setGuildEmbedPreference" />
+      </div>
+      <div class="two">
+        <CommandPreview />
+      </div>
     </content-card>
   </content-container>
 </template>
@@ -30,3 +34,13 @@ export default {
   computed: mapGetters(['guildMemberCount']),
 };
 </script>
+
+<style lang="scss" scoped>
+  .one, .two {
+    flex: 1;
+  }
+
+  .one {
+    margin-right: 5rem;
+  }
+</style>

@@ -40,19 +40,25 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #181836;
-  color: #2c3e50;
-  margin: 0;
-  padding: 0;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
-  background-color: #181836;
-}
+  #app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #181836;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    background-color: #181836;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+  h1 {
+    margin: .5rem 0 2rem 0;
+  }
 </style>
