@@ -1,5 +1,6 @@
 <template>
   <div class="cascade-check">
+    <label>{{ this.$props.label }}</label>
     <input type="checkbox" v-model="dataModel">
   </div>
 </template>
@@ -11,6 +12,9 @@ export default {
       required: true,
     },
     saveSet: {
+      required: true,
+    },
+    label: {
       required: true,
     },
   },
@@ -26,3 +30,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .cascade-check {
+    display: flex;
+    margin: 1.5rem 0 0 0;
+
+    label {
+      flex: 1;
+      color: white;
+    }
+  }
+</style>
