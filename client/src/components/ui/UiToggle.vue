@@ -1,7 +1,7 @@
 <template>
   <div class="ui-toggle">
     <label>{{ this.$props.label }}</label>
-    <div v-on:click="toggle" :class="dataModel ? 'toggle' : 'toggle on'"></div>
+    <div v-on:click="toggle" :class="dataModel ? 'toggle on' : 'toggle'"></div>
     <input type="checkbox" v-model="dataModel" />
   </div>
 </template>
