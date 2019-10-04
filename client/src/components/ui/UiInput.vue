@@ -1,5 +1,5 @@
 <template>
-  <div class="cascade-input">
+  <div class="ui-input">
     <label class="label">{{ this.$props.label }}</label>
     <input class="input" type="text" v-model="dataModel">
   </div>
@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'ui-input',
   props: {
     saveGet: {
       required: true,
@@ -32,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .cascade-input {
+  .ui-input {
     position: relative;
 
     .input {

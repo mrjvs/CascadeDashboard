@@ -1,7 +1,7 @@
 <template>
   <heading-container class="server-list">
     <section-title text="Servers">
-      <cascade-button>Add server</cascade-button>
+      <ui-button>Add server</ui-button>
     </section-title>
     <content-grid>
       <server-card-link to="/488394590458478602"/>
@@ -14,14 +14,14 @@
 <script>
 import HeadingContainer from '@/components/layout/HeadingContainer.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
-import CascadeButton from '@/components/CascadeButton.vue';
+import UiButton from '@/components/ui/UiButton.vue';
 import ContentGrid from '@/components/layout/ContentGrid.vue';
 import ServerCardLink from '@/components/other/ServerCardLink.vue';
 
 export default {
   name: 'server-list',
   components: {
-    CascadeButton,
+    UiButton,
     SectionTitle,
     ContentGrid,
     HeadingContainer,

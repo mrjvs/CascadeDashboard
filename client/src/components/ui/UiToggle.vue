@@ -1,5 +1,5 @@
 <template>
-  <div class="cascade-check">
+  <div class="ui-toggle">
     <label>{{ this.$props.label }}</label>
     <div v-on:click="toggle" :class="dataModel ? 'toggle' : 'toggle on'"></div>
     <input type="checkbox" v-model="dataModel" />
@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'ui-toggle',
   props: {
     saveGet: {
       required: true,
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .cascade-check {
+  .ui-toggle {
     display: flex;
     margin: 1.5rem 0 0 0;
     align-items: center;

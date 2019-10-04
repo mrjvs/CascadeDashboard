@@ -1,17 +1,17 @@
 <template>
-  <button class="cascade-button">
+  <button class="ui-button">
     <slot />
   </button>
 </template>
 
 <script>
 export default {
-  name: 'cascade-button',
+  name: 'ui-button',
 };
 </script>
 
 <style lang="scss" scoped>
-  .cascade-button {
+  .ui-button {
     background-color: #24B69E;
     color: white;
     padding: .7em 3em;

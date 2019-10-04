@@ -3,8 +3,8 @@
     <content-card class="twopart">
       <div class="one">
         <h1>Command use</h1>
-        <CascadeInput label="prefix" saveGet="guildPrefix" saveSet="setGuildPrefix" />
-        <CascadeCheck label="Use embedded response"
+        <ui-input label="prefix" saveGet="guildPrefix" saveSet="setGuildPrefix" />
+        <ui-toggle label="Use embedded response"
           saveGet="guildEmbedPreference"
           saveSet="setGuildEmbedPreference" />
       </div>
@@ -18,16 +18,16 @@
 <script>
 import { mapGetters } from 'vuex';
 import CommandPreview from '@/components/CommandPreview.vue';
-import CascadeInput from '@/components/CascadeInput.vue';
-import CascadeCheck from '@/components/CascadeCheck.vue';
+import UiInput from '@/components/ui/UiInput.vue';
+import UiToggle from '@/components/ui/UiToggle.vue';
 import ContentContainer from '@/components/layout/ContentContainer.vue';
 import ContentCard from '@/components/layout/ContentCard.vue';
 
 export default {
   components: {
     CommandPreview,
-    CascadeInput,
-    CascadeCheck,
+    UiInput,
+    UiToggle,
     ContentContainer,
     ContentCard,
   },
