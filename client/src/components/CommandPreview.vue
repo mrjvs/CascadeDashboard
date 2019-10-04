@@ -64,7 +64,7 @@ export default {
       &.red:before {
         background-color: #E84565;
       }
-      
+
       &:last-of-type > .text {
         margin-bottom: 0;
       }
