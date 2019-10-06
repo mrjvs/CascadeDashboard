@@ -1,9 +1,9 @@
 <template>
-    <div id="app">
-        <router-view v-if="isAuthed === true"/>
-        <Login v-else-if="isAuthed === false"/>
-        <Loading v-else/>
-    </div>
+  <div id="app">
+    <router-view v-if="isAuthed === true" />
+    <Login v-else-if="isAuthed === false" />
+    <Loading v-else />
+  </div>
 </template>
 
 <script>
@@ -23,34 +23,42 @@ export default {
   },
   created() {
     // do auth check
-    isAuthenticated().then((res) => {
-      this.isAuthed = res;
-      this.$store.commit('setLoading', false);
-    }).catch(() => {
-      this.isAuthed = false;
-      this.$store.commit('setLoading', false);
-    });
+    isAuthenticated()
+      .then((res) => {
+        if (res !== true) {
+          window.location = process.env.VUE_APP_API_LOGIN;
+        }
+        this.isAuthed = res;
+        this.$store.commit('setLoading', false);
+      })
+      .catch(() => {
+        window.location = process.env.VUE_APP_API_LOGIN;
+        this.$store.commit('setLoading', false);
+      });
   },
 };
 </script>
 
-
 <style lang="scss">
-#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  #app {
+    font-family: "Aileron", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    background-color: #181836;
     color: #2c3e50;
-}
-#nav {
-    padding: 30px;
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
-}
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    background-color: #181836;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+  h1 {
+    margin: .5rem 0 2rem 0;
+  }
 </style>

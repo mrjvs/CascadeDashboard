@@ -1,23 +1,28 @@
 <template>
   <div class="server">
-    <div>
-      <h1>Server view</h1>
-      <div class="nav">
-        <router-link to="general">General</router-link><br>
-        <router-link to="modlog">Modlog</router-link>
-      </div>
-      <router-view name="settings"/>
-      <SaveAlert/>
-    </div>
+    <sidebar-container>
+      <sidebar backlink="../">
+        <sidebar-link to="general"><file-text-icon size="1x"/>General</sidebar-link>
+        <sidebar-link to="modlog"><box-icon size="1x"/>Modlog</sidebar-link>
+      </sidebar>
+      <router-view name="settings" />
+    </sidebar-container>
   </div>
 </template>
 
 <script>
-import SaveAlert from '@/components/SaveAlert.vue';
+import { FileTextIcon, BoxIcon } from 'vue-feather-icons';
+import SidebarContainer from '@/components/layout/SidebarContainer.vue';
+import Sidebar from '@/components/sidebar/Sidebar.vue';
+import SidebarLink from '@/components/sidebar/SidebarLink.vue';
 
 export default {
   components: {
-    SaveAlert,
+    SidebarContainer,
+    Sidebar,
+    SidebarLink,
+    FileTextIcon,
+    BoxIcon,
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);

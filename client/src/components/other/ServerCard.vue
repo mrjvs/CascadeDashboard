@@ -1,0 +1,61 @@
+<template>
+  <div class="server-card">
+    <div class="img" :style="`background-image: url('${ serverIcon }')`"></div>
+    <div class="data">
+      <h2>Cascade Discord Bot</h2>
+      <p>1.5k members</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'server-card',
+  computed: {
+    serverIcon() {
+      return '#';
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+  .server-card {
+    border-radius: 10px;
+    background-color: #1F1F3D;
+    color: #CCCCE8;
+    padding: 1em .7em;
+    display: flex;
+    margin: 1em 0;
+    width: auto;
+
+    .img {
+      flex-shrink: 0;
+      width: 3.5em;
+      height: 3.5em;
+      background-color: #282848;
+      border-radius: 50%;
+      margin-right: .7em;
+    }
+    .data {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+
+      h2 {
+        color: white;
+        font-size: 1.2em;
+        margin: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      p {
+        margin: .25em 0 0 0;
+      }
+    }
+  }
+</style>

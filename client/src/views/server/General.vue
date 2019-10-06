@@ -1,26 +1,46 @@
 <template>
-    <div class="general">
-        <h1>General page here</h1>
-        <p>There are {{ guildMemberCount }} members in this server</p>
-        <h3>custom prefix</h3>
-        <CascadeInput saveGet="guildPrefix" saveSet="setGuildPrefix" />
-        <CascadeCheck saveGet="guildEmbedPreference" saveSet="setGuildEmbedPreference" />
+  <content-container>
+    <content-card class="twopart">
+      <div class="one">
+        <h1>Command use</h1>
+        <ui-input label="prefix" saveGet="guildPrefix" saveSet="setGuildPrefix" />
+        <ui-toggle label="Use embedded response"
+          saveGet="guildEmbedPreference"
+          saveSet="setGuildEmbedPreference" />
+      </div>
+      <div class="two">
         <CommandPreview />
-    </div>
+      </div>
+    </content-card>
+  </content-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import CommandPreview from '@/components/CommandPreview.vue';
-import CascadeInput from '@/components/CascadeInput.vue';
-import CascadeCheck from '@/components/CascadeCheck.vue';
+import UiInput from '@/components/ui/UiInput.vue';
+import UiToggle from '@/components/ui/UiToggle.vue';
+import ContentContainer from '@/components/layout/ContentContainer.vue';
+import ContentCard from '@/components/layout/ContentCard.vue';
 
 export default {
   components: {
     CommandPreview,
-    CascadeInput,
-    CascadeCheck,
+    UiInput,
+    UiToggle,
+    ContentContainer,
+    ContentCard,
   },
   computed: mapGetters(['guildMemberCount']),
 };
 </script>
+
+<style lang="scss" scoped>
+  .one, .two {
+    flex: 1;
+  }
+
+  .one {
+    margin-right: 5rem;
+  }
+</style>
