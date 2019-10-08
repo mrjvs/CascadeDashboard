@@ -60,12 +60,14 @@ export default {
       },
     });
 
-    commit('setGuildData', {
-      prefix: response.data.guild.coreSettings.prefix,
-      useEmbedForMessages: response.data.guild.coreSettings.useEmbedForMessages,
-      deleteCommand: response.data.guild.coreSettings.deleteCommand,
-      memberCount: response.data.guild.memberCount,
-    });
+    const data = {
+      ...response.data.guild.coreSettings,
+      ...response.data.guild,
+    };
+
+    delete data.coreSettings;
+
+    commit('setGuildData', data);
     commit('setLoading', false);
   },
   async saveGuildData({ commit, state }, changes) {
