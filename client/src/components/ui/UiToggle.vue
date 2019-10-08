@@ -1,7 +1,7 @@
 <template>
-  <div class="ui-toggle">
+  <div v-on:click="toggle" class="ui-toggle">
     <label>{{ this.$props.label }}</label>
-    <div v-on:click="toggle" :class="dataModel ? 'toggle on' : 'toggle'"></div>
+    <div :class="dataModel ? 'toggle on' : 'toggle'"></div>
     <input type="checkbox" v-model="dataModel" />
   </div>
 </template>
@@ -41,12 +41,15 @@ export default {
 <style lang="scss" scoped>
   .ui-toggle {
     display: flex;
-    margin: 1.5rem 0 0 0;
+    margin: 1rem 0 0 0;
     align-items: center;
+    padding: .5rem 0;
+    cursor: pointer;
 
     label {
       flex: 1;
       color: white;
+      cursor: inherit;
     }
 
     input {
@@ -60,6 +63,7 @@ export default {
       background-color: #36365F;
       border-radius: 1.5rem;
       position: relative;
+      cursor: inherit;
 
       &:hover {
         background-color: #2b2b50;
