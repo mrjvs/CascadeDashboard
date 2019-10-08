@@ -56,13 +56,8 @@ export function setChange(state, type, key, value) {
 }
 
 export function parseGuildData(state) {
-  const keys = [
-    'prefix',
-    'embedPreference',
-  ];
-  if (!keys.find(key => state.changes.find(change => change.type === key))) return null;
-  return {
-    prefix: getNewestChange(state, 'prefix', 'prefix'),
-    embedPreference: getNewestChange(state, 'embedPreference', 'embedPreference'),
-  };
+  return state.changes.reduce((acc, el) => {
+    acc[el.type] = el.value;
+    return acc;
+  }, {});
 }

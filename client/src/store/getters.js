@@ -4,8 +4,8 @@ export default {
   guildPrefix(state) {
     return getNewestChange(state, 'prefix', 'prefix');
   },
-  guildEmbedPreference(state) {
-    return getNewestChange(state, 'embedPreference', 'embedPreference');
+  guildUseEmbedForMessages(state) {
+    return getNewestChange(state, 'useEmbedForMessages', 'useEmbedForMessages');
   },
   guildMemberCount(state) {
     return getStateGuildData(state, 'memberCount');

@@ -19,7 +19,10 @@ export default {
   setGuildPrefix(state, prefix) {
     setChange(state, 'prefix', 'prefix', prefix);
   },
-  setGuildEmbedPreference(state, bool) {
-    setChange(state, 'embedPreference', 'embedPreference', bool);
+  setGuildUseEmbedForMessages(state, bool) {
+    setChange(state, 'useEmbedForMessages', 'useEmbedForMessages', bool);
+  },
+  clearChanges(state) {
+    state.changes = [];
   },
 };

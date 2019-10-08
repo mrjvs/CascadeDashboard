@@ -5,8 +5,8 @@
         <h1>Command use</h1>
         <ui-input label="prefix" saveGet="guildPrefix" saveSet="setGuildPrefix" />
         <ui-toggle label="Use embedded response"
-          saveGet="guildEmbedPreference"
-          saveSet="setGuildEmbedPreference" />
+          saveGet="guildUseEmbedForMessages"
+          saveSet="setGuildUseEmbedForMessages" />
       </div>
       <div class="two">
         <CommandPreview />
