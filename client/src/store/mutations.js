@@ -1,6 +1,14 @@
-import { setChange } from './utils';
+import { setChange, SETTINGS } from './utils';
+
+const genFunc = key => (state, val) => setChange(state, key, val);
+
+const mutations = Object.keys(SETTINGS).reduce((acc, key) => {
+  acc[`setGuild${key}`] = genFunc(SETTINGS[key]);
+  return acc;
+}, {});
 
 export default {
+  ...mutations,
   selectedGuild(state, guildId) {
     state.selectedGuild = guildId;
   },
@@ -15,30 +23,6 @@ export default {
   },
   setLoading(state, bool) {
     state.loading = bool;
-  },
-  setGuildPrefix(state, prefix) {
-    setChange(state, 'prefix', 'prefix', prefix);
-  },
-  setGuildUseEmbedForMessages(state, bool) {
-    setChange(state, 'useEmbedForMessages', 'useEmbedForMessages', bool);
-  },
-  setGuildDeleteCommand(state, bool) {
-    setChange(state, 'deleteCommand', 'deleteCommand', bool);
-  },
-  setGuildShowPermErrors(state, bool) {
-    setChange(state, 'showPermErrors', 'showPermErrors', bool);
-  },
-  setGuildAdminsHaveAllPerms(state, bool) {
-    setChange(state, 'adminsHaveAllPerms', 'adminsHaveAllPerms', bool);
-  },
-  setGuildMentionPrefix(state, bool) {
-    setChange(state, 'mentionPrefix', 'mentionPrefix', bool);
-  },
-  setGuildAllowTagCommands(state, bool) {
-    setChange(state, 'allowTagCommands', 'allowTagCommands', bool);
-  },
-  setGuildShowModuleErrors(state, bool) {
-    setChange(state, 'showModuleErrors', 'showModuleErrors', bool);
   },
   clearChanges(state) {
     state.changes = [];

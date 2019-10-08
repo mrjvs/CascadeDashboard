@@ -1,33 +1,19 @@
-import { getNewestChange, getStateGuildData } from './utils';
+import { getNewestChange, SETTINGS, GETTERS } from './utils';
+
+const genFunc = key => state => getNewestChange(state, key);
+
+const combined = {
+  ...SETTINGS,
+  ...GETTERS,
+};
+
+const getters = Object.keys(combined).reduce((acc, key) => {
+  acc[`guild${key}`] = genFunc(SETTINGS[key]);
+  return acc;
+}, {});
 
 export default {
-  guildPrefix(state) {
-    return getNewestChange(state, 'prefix', 'prefix');
-  },
-  guildUseEmbedForMessages(state) {
-    return getNewestChange(state, 'useEmbedForMessages', 'useEmbedForMessages');
-  },
-  guildDeleteCommand(state) {
-    return getNewestChange(state, 'deleteCommand', 'deleteCommand');
-  },
-  guildShowPermErrors(state) {
-    return getNewestChange(state, 'showPermErrors', 'showPermErrors');
-  },
-  guildAdminsHaveAllPerms(state) {
-    return getNewestChange(state, 'adminsHaveAllPerms', 'adminsHaveAllPerms');
-  },
-  guildMentionPrefix(state) {
-    return getNewestChange(state, 'mentionPrefix', 'mentionPrefix');
-  },
-  guildAllowTagCommands(state) {
-    return getNewestChange(state, 'allowTagCommands', 'allowTagCommands');
-  },
-  guildShowModuleErrors(state) {
-    return getNewestChange(state, 'showModuleErrors', 'showModuleErrors');
-  },
-  guildMemberCount(state) {
-    return getStateGuildData(state, 'memberCount');
-  },
+  ...getters,
   hasChanges(state) {
     return state.changes.length !== 0;
   },

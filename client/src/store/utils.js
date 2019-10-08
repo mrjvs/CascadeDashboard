@@ -1,3 +1,18 @@
+export const SETTINGS = {
+  Prefix: 'coreSettings.prefix',
+  UseEmbedForMessages: 'coreSettings.useEmbedForMessages',
+  DeleteCommand: 'coreSettings.deleteCommand',
+  ShowPermErrors: 'coreSettings.showPermErrors',
+  AdminsHaveAllPerms: 'coreSettings.adminsHaveAllPerms',
+  MentionPrefix: 'coreSettings.mentionPrefix',
+  AllowTagCommands: 'coreSettings.allowTagCommands',
+  ShowModuleErrors: 'coreSettings.showModuleErrors',
+};
+
+export const GETTERS = {
+  guildMemberCount: 'memberCount',
+};
+
 export function getSelectedGuild(state) {
   return state.guilds.find(val => val.id === state.selectedGuild);
 }
@@ -6,14 +21,21 @@ export function selectedGuildExists(state) {
   return getSelectedGuild(state) != null;
 }
 
+function getValueFromPath(object, path) {
+  const splat = path.split('.');
+  let curr = object;
+  for (let i = 0; i < splat.length; i += 1) {
+    curr = curr[splat[i]];
+  }
+  return curr;
+}
+
 // gets value from made changes or guild data if no change made
-export function getNewestChange(state, type, key) {
+export function getNewestChange(state, path) {
   if (selectedGuildExists(state)) {
-    const index = state.changes.findIndex(val => val.type === type);
-    if (index !== -1) {
-      return state.changes[index].value;
-    }
-    return getSelectedGuild(state)[key];
+    const changes = state.changes.find(el => el.path === path);
+    if (changes) return changes.value;
+    return getValueFromPath(getSelectedGuild(state), path);
   }
   return null;
 }
@@ -23,41 +45,39 @@ export function getStateGuildData(state, key) {
   return null;
 }
 
-function replaceChange(state, type, key, value, index) {
-  if (selectedGuildExists(state)) {
-    state.changes.splice(index, 1);
-    if (getSelectedGuild(state)[key] !== value) {
-      state.changes.push({
-        type,
-        value,
-      });
-    }
+function addChange(state, path, value) {
+  state.changes.push({
+    path,
+    value,
+  });
+}
+
+function replaceChange(state, path, value, index) {
+  state.changes.splice(index, 1);
+
+  const oldValue = getValueFromPath(getSelectedGuild(state), path);
+  if (oldValue !== value) {
+    addChange(state, path, value);
   }
 }
 
-function addChange(state, type, key, value) {
-  if (selectedGuildExists(state)) {
-    if (getSelectedGuild(state)[key] !== value) {
-      state.changes.push({
-        type,
-        value,
-      });
-    }
-  }
-}
-
-export function setChange(state, type, key, value) {
-  const index = state.changes.findIndex(val => val.type === type);
+export function setChange(state, path, value) {
+  if (!selectedGuildExists(state)) return;
+  const index = state.changes.findIndex(val => val.path === path);
   if (index === -1) {
-    addChange(state, type, key, value);
+    addChange(state, path, value);
   } else {
-    replaceChange(state, type, key, value, index);
+    replaceChange(state, path, value, index);
   }
 }
 
-export function parseGuildData(state) {
+// Do the reverse of get value from path
+// Make an object with all changes
+export function parseCoreSettingChanges(state) {
   return state.changes.reduce((acc, el) => {
-    acc[el.type] = el.value;
+    if (el.path.includes('coreSettings')) {
+      acc[el.path.split('coreSettings.')[1]] = el.value;
+    }
     return acc;
   }, {});
 }

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import apollo from '../apollo/client';
-import { parseGuildData } from './utils';
+import { parseCoreSettingChanges } from './utils';
 
 const GUILD_DATA_QUERY = gql`
   query guild($id: Long!) {
@@ -60,14 +60,7 @@ export default {
       },
     });
 
-    const data = {
-      ...response.data.guild.coreSettings,
-      ...response.data.guild,
-    };
-
-    delete data.coreSettings;
-
-    commit('setGuildData', data);
+    commit('setGuildData', response.data.guild);
     commit('setLoading', false);
   },
   async saveGuildData({ commit, state }, changes) {
@@ -78,11 +71,13 @@ export default {
         id: state.selectedGuild,
       },
     });
-    commit('setGuildData', response.data.updateCoreSettings);
+    commit('setGuildData', {
+      coreSettings: response.data.updateCoreSettings,
+    });
     commit('clearChanges');
   },
   async saveChanges({ dispatch, state }) {
-    const guildData = parseGuildData(state);
+    const guildData = parseCoreSettingChanges(state);
     if (guildData !== null) {
       try {
         await dispatch('saveGuildData', guildData);
