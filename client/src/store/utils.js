@@ -1,3 +1,5 @@
+// ONLY FOR GUILD GETTERS AND MUTATIONS (SETTERS)
+// TRACKS CHANGES
 export const SETTINGS = {
   Prefix: 'coreSettings.prefix',
   UseEmbedForMessages: 'coreSettings.useEmbedForMessages',
@@ -9,19 +11,20 @@ export const SETTINGS = {
   ShowModuleErrors: 'coreSettings.showModuleErrors',
 };
 
+// ONLY FOR GENERIC STATE GETTERS
 export const GETTERS = {
-  guildMemberCount: 'memberCount',
+  selectedGuildId: 'selectedGuildId',
 };
 
 export function getSelectedGuild(state) {
-  return state.guilds.find(val => val.id === state.selectedGuild);
+  return state.guilds.find(val => val.id === state.selectedGuildId);
 }
 
 export function selectedGuildExists(state) {
   return getSelectedGuild(state) != null;
 }
 
-function getValueFromPath(object, path) {
+export function getValueFromPath(object, path) {
   const splat = path.split('.');
   let curr = object;
   for (let i = 0; i < splat.length; i += 1) {

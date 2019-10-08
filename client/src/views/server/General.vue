@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import CommandPreview from '@/components/CommandPreview.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import UiToggle from '@/components/ui/UiToggle.vue';
@@ -49,7 +48,6 @@ export default {
     ContentContainer,
     ContentCard,
   },
-  computed: mapGetters(['guildMemberCount']),
 };
 </script>
 

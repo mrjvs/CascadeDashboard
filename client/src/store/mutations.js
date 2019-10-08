@@ -1,4 +1,5 @@
-import { setChange, SETTINGS } from './utils';
+import Vue from 'vue';
+import { setChange, SETTINGS, getValueFromPath } from './utils';
 
 const genFunc = key => (state, val) => setChange(state, key, val);
 
@@ -10,19 +11,27 @@ const mutations = Object.keys(SETTINGS).reduce((acc, key) => {
 export default {
   ...mutations,
   selectedGuild(state, guildId) {
-    state.selectedGuild = guildId;
+    state.selectedGuildId = guildId;
   },
   setGuildData(state, guildData) {
-    const guildIndex = state.guilds.findIndex(val => val.id === state.selectedGuild);
+    const guildIndex = state.guilds.findIndex(val => val.id === state.selectedGuildId);
     if (state.guilds[guildIndex]) {
       const merged = { ...state.guilds[guildIndex], ...guildData };
-      state.guilds[guildIndex] = merged;
+      Vue.set(state.guilds, guildIndex, merged);
     } else {
-      state.guilds.push({ ...guildData, id: state.selectedGuild });
+      state.guilds.push({ ...guildData, id: state.selectedGuildId });
     }
   },
   setLoading(state, bool) {
     state.loading = bool;
+  },
+  clearNonChanges(state) {
+    const changes = state.changes.filter((change) => {
+      const guild = state.guilds.find(el => el.id === state.selectedGuildId);
+      const currentValue = getValueFromPath(guild, change.path);
+      return change.value !== currentValue;
+    });
+    Vue.set(state, 'changes', changes);
   },
   clearChanges(state) {
     state.changes = [];

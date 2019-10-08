@@ -1,20 +1,26 @@
 import { getNewestChange, SETTINGS, GETTERS } from './utils';
 
-const genFunc = key => state => getNewestChange(state, key);
+const genSettingsFunc = key => state => getNewestChange(state, key);
 
-const combined = {
-  ...SETTINGS,
-  ...GETTERS,
-};
+const settings = Object.keys(SETTINGS).reduce((acc, key) => {
+  acc[`guild${key}`] = genSettingsFunc(SETTINGS[key]);
+  return acc;
+}, {});
 
-const getters = Object.keys(combined).reduce((acc, key) => {
-  acc[`guild${key}`] = genFunc(SETTINGS[key]);
+const genGetter = key => state => state[key];
+
+const getters = Object.keys(GETTERS).reduce((acc, key) => {
+  acc[key] = genGetter(GETTERS[key]);
   return acc;
 }, {});
 
 export default {
+  ...settings,
   ...getters,
   hasChanges(state) {
     return state.changes.length !== 0;
+  },
+  getSelectedGuild(state) {
+    return state.guilds.find(val => val.id === state.selectedGuildId);
   },
 };
