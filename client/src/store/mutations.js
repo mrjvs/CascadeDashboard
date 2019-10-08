@@ -25,8 +25,8 @@ export default {
   setGuildDeleteCommand(state, bool) {
     setChange(state, 'deleteCommand', 'deleteCommand', bool);
   },
-  setGuildShowpermErrors(state, bool) {
-    setChange(state, 'showpermErrors', 'showpermErrors', bool);
+  setGuildShowPermErrors(state, bool) {
+    setChange(state, 'showPermErrors', 'showPermErrors', bool);
   },
   setGuildAdminsHaveAllPerms(state, bool) {
     setChange(state, 'adminsHaveAllPerms', 'adminsHaveAllPerms', bool);

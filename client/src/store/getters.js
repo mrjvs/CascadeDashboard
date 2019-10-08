@@ -10,8 +10,8 @@ export default {
   guildDeleteCommand(state) {
     return getNewestChange(state, 'deleteCommand', 'deleteCommand');
   },
-  guildShowpermErrors(state) {
-    return getNewestChange(state, 'showpermErrors', 'showpermErrors');
+  guildShowPermErrors(state) {
+    return getNewestChange(state, 'showPermErrors', 'showPermErrors');
   },
   guildAdminsHaveAllPerms(state) {
     return getNewestChange(state, 'adminsHaveAllPerms', 'adminsHaveAllPerms');
