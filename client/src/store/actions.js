@@ -7,8 +7,16 @@ const GUILD_DATA_QUERY = gql`
     guild(id: $id) {
       memberCount,
       coreSettings {
+        deleteCommand,
+        showPermErrors,
+        adminsHaveAllPerms,
+        prefix,
+        enabledModules,
+        mentionPrefix,
+        allowTagCommands,
         useEmbedForMessages,
-        prefix
+        showModuleErrors,
+        tags,
       }
     }
   }
@@ -17,8 +25,16 @@ const GUILD_DATA_QUERY = gql`
 const GUILD_DATA_MUTATION = gql`
   mutation updateCoreSettings($newSettings: Map_String_ObjectScalar!, $id: Long!) {
     updateCoreSettings(newSettings: $newSettings, guildId: $id) {
+      deleteCommand,
+      showPermErrors,
+      adminsHaveAllPerms,
+      prefix,
+      enabledModules,
+      mentionPrefix,
+      allowTagCommands,
       useEmbedForMessages,
-      prefix
+      showModuleErrors,
+      tags,
     }
   }
 `;
@@ -47,6 +63,7 @@ export default {
     commit('setGuildData', {
       prefix: response.data.guild.coreSettings.prefix,
       useEmbedForMessages: response.data.guild.coreSettings.useEmbedForMessages,
+      deleteCommand: response.data.guild.coreSettings.deleteCommand,
       memberCount: response.data.guild.memberCount,
     });
     commit('setLoading', false);

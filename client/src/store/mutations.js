@@ -22,6 +22,24 @@ export default {
   setGuildUseEmbedForMessages(state, bool) {
     setChange(state, 'useEmbedForMessages', 'useEmbedForMessages', bool);
   },
+  setGuildDeleteCommand(state, bool) {
+    setChange(state, 'deleteCommand', 'deleteCommand', bool);
+  },
+  setGuildShowpermErrors(state, bool) {
+    setChange(state, 'showpermErrors', 'showpermErrors', bool);
+  },
+  setGuildAdminsHaveAllPerms(state, bool) {
+    setChange(state, 'adminsHaveAllPerms', 'adminsHaveAllPerms', bool);
+  },
+  setGuildMentionPrefix(state, bool) {
+    setChange(state, 'mentionPrefix', 'mentionPrefix', bool);
+  },
+  setGuildAllowTagCommands(state, bool) {
+    setChange(state, 'allowTagCommands', 'allowTagCommands', bool);
+  },
+  setGuildShowModuleErrors(state, bool) {
+    setChange(state, 'showModuleErrors', 'showModuleErrors', bool);
+  },
   clearChanges(state) {
     state.changes = [];
   },
