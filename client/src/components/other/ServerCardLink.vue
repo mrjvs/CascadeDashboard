@@ -1,9 +1,9 @@
 <template>
   <router-link :to="this.$props.to" class="server-card-link">
-    <div class="img" :style="`background-image: url('${ serverIcon }')`"></div>
+    <div class="img" :style="`background-image: url('${ guild.iconUrl }')`"></div>
     <div class="data">
-      <h2>Cascade Discord Bot</h2>
-      <p>1.5k members</p>
+      <h2>{{ guild.name }}</h2>
+      <p>{{ guild.memberCount }} members</p>
     </div>
     <chevron-right-icon size="1x" class="icon" />
   </router-link>
@@ -19,6 +19,9 @@ export default {
   },
   props: {
     to: {
+      required: true,
+    },
+    guild: {
       required: true,
     },
   },
@@ -58,6 +61,7 @@ export default {
       width: 3.5em;
       height: 3.5em;
       background-color: #282848;
+      background-size: cover;
       border-radius: 50%;
       margin-right: 1em;
     }

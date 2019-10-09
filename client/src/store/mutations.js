@@ -14,20 +14,23 @@ export default {
     state.selectedGuildId = guildId;
   },
   setGuildData(state, guildData) {
-    const guildIndex = state.guilds.findIndex(val => val.id === state.selectedGuildId);
+    const guildIndex = state.guilds.findIndex(val => val.guildId === state.selectedGuildId);
     if (state.guilds[guildIndex]) {
       const merged = { ...state.guilds[guildIndex], ...guildData };
       Vue.set(state.guilds, guildIndex, merged);
     } else {
-      state.guilds.push({ ...guildData, id: state.selectedGuildId });
+      state.guilds.push({ ...guildData, guildId: state.selectedGuildId });
     }
+  },
+  setUserGuilds(state, guilds) {
+    Vue.set(state, 'guilds', guilds);
   },
   setLoading(state, bool) {
     state.loading = bool;
   },
   clearNonChanges(state) {
     const changes = state.changes.filter((change) => {
-      const guild = state.guilds.find(el => el.id === state.selectedGuildId);
+      const guild = state.guilds.find(el => el.guildId === state.selectedGuildId);
       const currentValue = getValueFromPath(guild, change.path);
       return change.value !== currentValue;
     });

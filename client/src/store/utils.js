@@ -17,7 +17,7 @@ export const GETTERS = {
 };
 
 export function getSelectedGuild(state) {
-  return state.guilds.find(val => val.id === state.selectedGuildId);
+  return state.guilds.find(val => val.guildId === state.selectedGuildId);
 }
 
 export function selectedGuildExists(state) {

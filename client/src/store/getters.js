@@ -21,6 +21,9 @@ export default {
     return state.changes.length !== 0;
   },
   getSelectedGuild(state) {
-    return state.guilds.find(val => val.id === state.selectedGuildId);
+    return state.guilds.find(val => val.guildId === state.selectedGuildId);
+  },
+  userGuilds(state) {
+    return state.guilds;
   },
 };

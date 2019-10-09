@@ -4,9 +4,9 @@
       <ui-button>Add server</ui-button>
     </section-title>
     <content-grid>
-      <server-card-link to="/488394590458478602"/>
-      <server-card-link to="/12345"/>
-      <server-card-link to="/abcdefg"/>
+      <server-card-link
+        v-for="server in this.$store.getters.userGuilds" :key="`${server.guildId}`"
+        :to="`/${server.guildId}/`" :guild="server" />
     </content-grid>
   </heading-container>
 </template>
@@ -26,6 +26,9 @@ export default {
     ContentGrid,
     HeadingContainer,
     ServerCardLink,
+  },
+  created() {
+    this.$store.dispatch('getUserGuilds');
   },
 };
 </script>

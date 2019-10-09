@@ -4,7 +4,7 @@
       <router-link :to="this.$props.backlink"><arrow-left-icon size="18" />Back</router-link>
       <refresh-button />
     </div>
-    <server-card />
+    <server-card :guild="getSelectedGuild"/>
     <div class="links">
       <slot />
     </div>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ArrowLeftIcon } from 'vue-feather-icons';
 import ServerCard from '@/components/other/ServerCard.vue';
 import RefreshButton from '@/components/sidebar/RefreshButton.vue';
@@ -28,6 +29,7 @@ export default {
     ArrowLeftIcon,
     RefreshButton,
   },
+  computed: mapGetters(['getSelectedGuild']),
 };
 </script>
 

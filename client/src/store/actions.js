@@ -6,6 +6,10 @@ const USER_GUILDS_QUERY = gql`
   query userGuilds {
     userGuilds {
       memberCount,
+      name,
+      guildId,
+      iconUrl,
+      ownerId,
       coreSettings {
         deleteCommand,
         showPermErrors,
@@ -61,18 +65,22 @@ const GUILD_DATA_MUTATION = gql`
 
 export default {
   async getUserGuilds({ commit }) {
+    commit('setLoading', true);
     const response = await apollo.query({
       query: USER_GUILDS_QUERY,
+      fetchPolicy: 'no-cache',
     });
+    commit('setUserGuilds', response.data.userGuilds);
+    commit('setLoading', false);
   },
-  async getGuildData({ commit }, guildId, noCache = false) {
+  async getGuildData({ commit }, guildId) {
     commit('setLoading', true);
     const response = await apollo.query({
       query: GUILD_DATA_QUERY,
       variables: {
         id: guildId,
       },
-      fetchPolicy: noCache ? 'no-cache' : 'cache-and-network',
+      fetchPolicy: 'no-cache',
     });
 
     commit('setGuildData', response.data.guild);
