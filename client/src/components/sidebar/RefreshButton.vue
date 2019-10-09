@@ -1,5 +1,5 @@
 <template>
-  <button class="refresh-button" v-on:click="refresh"><refresh-cw-icon size="18" />Refresh</button>
+  <button :class="{ spin: loading }" class="refresh-button" v-on:click="refresh"><refresh-cw-icon size="18" />Refresh</button>
 </template>
 
 <script>
@@ -10,9 +10,26 @@ export default {
   components: {
     RefreshCwIcon,
   },
+  data() {
+    return {
+      loading: false,
+    };
+  },
   methods: {
     refresh() {
-      this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId);
+      this.loading = true;
+      const start = Date.now()
+      this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId).then(() => {
+        const timeout = 500 - (Date.now() - start);
+        console.log(timeout)
+        if (timeout > 0) {
+          setTimeout(() => {
+            this.loading = false
+          }, timeout)
+        } else {
+          this.loading = false;
+        }
+      })
     },
   },
 };
@@ -31,6 +48,10 @@ export default {
     border: none;
     cursor: pointer;
 
+    &.spin {
+      animation: spin .25s ease-out ;
+    }
+
     &:focus, &:visited, &:hover {
       text-decoration: none;
       color: white;
@@ -42,6 +63,15 @@ export default {
 
     .icon, .feather {
       margin-right: .4em;
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
     }
   }
 </style>

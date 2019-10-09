@@ -13,6 +13,7 @@
 
 <script>
 import { FileTextIcon, BoxIcon } from 'vue-feather-icons';
+import store from '../store';
 import SidebarContainer from '@/components/layout/SidebarContainer.vue';
 import Sidebar from '@/components/sidebar/Sidebar.vue';
 import SidebarLink from '@/components/sidebar/SidebarLink.vue';
@@ -39,9 +40,15 @@ export default {
   beforeRouteLeave(to, from, next) {
     next(!this.$store.getters.hasChanges);
   },
+  beforeRouteEnter(to, from, next) {
+    store.commit('selectedGuild', to.params.id);
+    store.dispatch('getGuildData', to.params.id).then(() => {
+      next();
+    });
+  },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);
-    this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId);
+    this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId)
     window.addEventListener('beforeunload', this.stopUnsavedUnload);
   },
   beforeDestroy() {

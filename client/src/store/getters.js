@@ -26,4 +26,7 @@ export default {
   userGuilds(state) {
     return state.guilds;
   },
+  isLoading(state) {
+    return state.loading;
+  },
 };

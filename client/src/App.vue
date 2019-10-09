@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view v-if="isAuthed === true" />
+    <router-view :key="$route.fullPath" v-if="isAuthed === true" />
     <Loading v-else />
   </div>
 </template>

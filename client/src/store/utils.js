@@ -28,7 +28,12 @@ export function getValueFromPath(object, path) {
   const splat = path.split('.');
   let curr = object;
   for (let i = 0; i < splat.length; i += 1) {
-    curr = curr[splat[i]];
+    if (curr[splat[i]]) {
+      curr = curr[splat[i]];
+    } else {
+      if (process.env.NODE_ENV !== 'production') console.warn(`${path} does not exist in object.`, object);
+      return null;
+    }
   }
   return curr;
 }

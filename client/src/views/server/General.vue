@@ -10,6 +10,17 @@
         <ui-toggle label="Delete command after processing"
           saveGet="guildDeleteCommand"
           saveSet="setGuildDeleteCommand" />
+        <ui-toggle label="Allow tag to be used as commands"
+          saveGet="guildAllowTagCommands"
+          saveSet="setGuildAllowTagCommands" />
+      </div>
+      <div class="two">
+        <CommandPreview />
+      </div>
+    </content-card>
+    <content-card class="twopart">
+      <div class="one">
+        <h1>Misc</h1>
         <ui-toggle label="Mentioning bot shows prefix"
           saveGet="guildMentionPrefix"
           saveSet="setGuildMentionPrefix" />
@@ -19,15 +30,11 @@
         <ui-toggle label="Show permission errors"
           saveGet="guildShowPermErrors"
           saveSet="setGuildShowPermErrors" />
-        <ui-toggle label="Allow tag to be used as commands"
-          saveGet="guildAllowTagCommands"
-          saveSet="setGuildAllowTagCommands" />
         <ui-toggle label="Show module errors"
           saveGet="guildShowModuleErrors"
           saveSet="setGuildShowModuleErrors" />
       </div>
       <div class="two">
-        <CommandPreview />
       </div>
     </content-card>
   </content-container>

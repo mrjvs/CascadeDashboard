@@ -1,6 +1,6 @@
 <template>
   <div class="server-card">
-    <div class="img" :style="`background-image: url('${ guild.iconUrl }')`"></div>
+    <div v-if="!$store.isLoading" class="img" :style="`background-image: url('${ guild.iconUrl }')`"></div>
     <div class="data">
       <h2>{{ guild.name }}</h2>
       <p>{{ guild.memberCount }} members</p>

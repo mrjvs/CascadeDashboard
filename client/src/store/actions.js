@@ -9,19 +9,6 @@ const USER_GUILDS_QUERY = gql`
       name,
       guildId,
       iconUrl,
-      ownerId,
-      coreSettings {
-        deleteCommand,
-        showPermErrors,
-        adminsHaveAllPerms,
-        prefix,
-        enabledModules,
-        mentionPrefix,
-        allowTagCommands,
-        useEmbedForMessages,
-        showModuleErrors,
-        tags,
-      }
     }
   }
 `;
@@ -30,6 +17,8 @@ const GUILD_DATA_QUERY = gql`
   query guild($id: Long!) {
     guild(id: $id) {
       memberCount,
+      iconUrl,
+      name,
       coreSettings {
         deleteCommand,
         showPermErrors,
