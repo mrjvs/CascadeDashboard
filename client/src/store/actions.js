@@ -42,6 +42,7 @@ const GUILD_DATA_QUERY = gql`
         showModuleErrors,
         tags,
         helpShowAllModules,
+        helpHideCommandsNoPermission,
       }
     }
   }
@@ -61,6 +62,7 @@ const GUILD_DATA_MUTATION = gql`
       showModuleErrors,
       tags,
       helpShowAllModules,
+      helpHideCommandsNoPermission,
     }
   }
 `;

@@ -10,6 +10,7 @@ export const SETTINGS = {
   AllowTagCommands: 'coreSettings.allowTagCommands',
   ShowModuleErrors: 'coreSettings.showModuleErrors',
   HelpShowAllModules: 'coreSettings.helpShowAllModules',
+  HelpHideCommandsNoPermission: 'coreSettings.helpHideCommandsNoPermission',
 };
 
 // ONLY FOR GENERIC STATE GETTERS
