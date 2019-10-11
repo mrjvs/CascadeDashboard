@@ -9,6 +9,7 @@ export const SETTINGS = {
   MentionPrefix: 'coreSettings.mentionPrefix',
   AllowTagCommands: 'coreSettings.allowTagCommands',
   ShowModuleErrors: 'coreSettings.showModuleErrors',
+  HelpShowAllModules: 'coreSettings.helpShowAllModules',
 };
 
 // ONLY FOR GENERIC STATE GETTERS

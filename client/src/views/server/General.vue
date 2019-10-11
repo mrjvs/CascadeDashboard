@@ -22,6 +22,9 @@
         <ui-toggle label="Allow tag to be used as commands"
           saveGet="guildAllowTagCommands"
           saveSet="setGuildAllowTagCommands" />
+        <ui-toggle label="Help shows all Modules"
+          saveGet="guildHelpShowAllModules"
+          saveSet="setGuildHelpShowAllModules" />
         <ui-toggle label="Show module errors"
           saveGet="guildShowModuleErrors"
           saveSet="setGuildShowModuleErrors" />

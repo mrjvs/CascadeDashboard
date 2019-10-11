@@ -20,7 +20,7 @@ const USER_GUILDS_QUERY = gql`
         allowTagCommands,
         useEmbedForMessages,
         showModuleErrors,
-        tags,
+        tags
       }
     }
   }
@@ -41,6 +41,7 @@ const GUILD_DATA_QUERY = gql`
         useEmbedForMessages,
         showModuleErrors,
         tags,
+        helpShowAllModules,
       }
     }
   }
@@ -59,6 +60,7 @@ const GUILD_DATA_MUTATION = gql`
       useEmbedForMessages,
       showModuleErrors,
       tags,
+      helpShowAllModules,
     }
   }
 `;
