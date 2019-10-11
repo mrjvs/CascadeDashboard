@@ -13,8 +13,10 @@ export async function generateNewToken() {
     url: process.env.VUE_APP_API_GETTOKEN,
     withCredentials: true,
   });
+  const data = JSON.parse(atob(response.data.token.split('.')[1]));
   localStorage.setItem('cascade-token', response.data.token);
-  localStorage.setItem('cascade-expiry', new Date().getTime() + response.data.expiresIn * 60);
+  localStorage.setItem('cascade-userid', data.sub);
+  localStorage.setItem('cascade-expiry', data.exp * 1000);
 }
 
 export async function isAuthenticated() {
