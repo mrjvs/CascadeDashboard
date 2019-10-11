@@ -20,7 +20,7 @@ const USER_GUILDS_QUERY = gql`
         allowTagCommands,
         useEmbedForMessages,
         showModuleErrors,
-        tags
+        tags,
       }
     }
   }
