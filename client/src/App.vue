@@ -1,20 +1,17 @@
 <template>
   <div id="app">
     <router-view v-if="isAuthed === true" />
-    <Login v-else-if="isAuthed === false" />
     <Loading v-else />
   </div>
 </template>
 
 <script>
 import Loading from '@/components/Loading.vue';
-import Login from '@/components/Login.vue';
 import { isAuthenticated } from '@/utils/auth';
 
 export default {
   components: {
     Loading,
-    Login,
   },
   data() {
     return {

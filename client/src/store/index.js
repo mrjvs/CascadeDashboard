@@ -12,6 +12,7 @@ export default new Vuex.Store({
     guilds: [],
     loading: true,
     changes: [],
+    selectedGuildId: null,
   },
   getters,
   mutations,

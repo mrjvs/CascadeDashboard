@@ -6,7 +6,7 @@
         <p class="content">{{ guildPrefix }}play Hacknet full OST</p>
       </div>
     </div>
-    <div v-if="guildEmbedPreference" class="user red">
+    <div v-if="guildUseEmbedForMessages" class="user red">
       <div class="text">
         <p class="username">Cascade</p>
         <div class="embed green">
@@ -35,7 +35,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  computed: mapGetters(['guildPrefix', 'guildEmbedPreference']),
+  computed: mapGetters(['guildPrefix', 'guildUseEmbedForMessages']),
 };
 </script>
 
@@ -64,7 +64,7 @@ export default {
       &.red:before {
         background-color: #E84565;
       }
-      
+
       &:last-of-type > .text {
         margin-bottom: 0;
       }

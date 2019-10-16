@@ -1,9 +1,9 @@
 <template>
   <div class="server-card">
-    <div class="img" :style="`background-image: url('${ serverIcon }')`"></div>
+    <div class="img" :style="`background-image: url('${ guild.iconUrl }')`"></div>
     <div class="data">
-      <h2>Cascade Discord Bot</h2>
-      <p>1.5k members</p>
+      <h2>{{ guild.name }}</h2>
+      <p>{{ guild.memberCount }} members</p>
     </div>
   </div>
 </template>
@@ -11,9 +11,9 @@
 <script>
 export default {
   name: 'server-card',
-  computed: {
-    serverIcon() {
-      return '#';
+  props: {
+    guild: {
+      required: true,
     },
   },
 };
@@ -34,6 +34,7 @@ export default {
       width: 3.5em;
       height: 3.5em;
       background-color: #282848;
+      background-size: cover;
       border-radius: 50%;
       margin-right: .7em;
     }
