@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ServerComponent from './views/Server.vue';
-import ServerList from './views/ServerList.vue';
+// import ServerList from './views/ServerList.vue';
 
 import General from './views/server/General.vue';
 import Modlog from './views/server/Modlog.vue';
+
+import DashboardTest from './views/test/Dashboard.vue';
 
 Vue.use(Router);
 
@@ -15,7 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'server-list',
-      component: ServerList,
+      component: DashboardTest, //ServerList,
     },
     {
       path: '/:id',

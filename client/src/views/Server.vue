@@ -48,7 +48,7 @@ export default {
   },
   created() {
     this.$store.commit('selectedGuild', this.$route.params.id);
-    this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId)
+    this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId);
     window.addEventListener('beforeunload', this.stopUnsavedUnload);
   },
   beforeDestroy() {

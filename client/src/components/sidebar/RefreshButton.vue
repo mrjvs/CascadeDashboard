@@ -18,18 +18,18 @@ export default {
   methods: {
     refresh() {
       this.loading = true;
-      const start = Date.now()
+      const start = Date.now();
       this.$store.dispatch('getGuildData', this.$store.getters.selectedGuildId).then(() => {
         const timeout = 500 - (Date.now() - start);
-        console.log(timeout)
+        console.log(timeout);
         if (timeout > 0) {
           setTimeout(() => {
-            this.loading = false
-          }, timeout)
+            this.loading = false;
+          }, timeout);
         } else {
           this.loading = false;
         }
-      })
+      });
     },
   },
 };

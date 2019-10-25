@@ -15,12 +15,12 @@ export default {
   },
   data() {
     return {
-      isAuthed: null,
+      isAuthed: true,
     };
   },
   created() {
     // do auth check
-    isAuthenticated()
+    /*isAuthenticated()
       .then((res) => {
         if (res !== true) {
           window.location = process.env.VUE_APP_API_LOGIN;
@@ -31,7 +31,7 @@ export default {
       .catch(() => {
         window.location = process.env.VUE_APP_API_LOGIN;
         this.$store.commit('setLoading', false);
-      });
+      });*/
   },
 };
 </script>
