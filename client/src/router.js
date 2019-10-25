@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'server-list',
-      component: DashboardTest, //ServerList,
+      component: DashboardTest, // ServerList,
     },
     {
       path: '/:id',
